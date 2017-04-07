@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js练习</title>
+</head>
+<body>
+
+</body>
+<script>
+    function delaySayHello(){
+        setTimeout('alert("Hello")',3000);
+    };
+    var t=0;
+    function repeateSayGo(){
+        var tId=setInterval(function(){
+            console.log('Go !!!!');
+            t++;
+            if(t==2){
+                clearInterval(tId);
+            }
+        },1000);
+        console.log(tId)
+
+    };
+   // delaySayHello();
+   repeateSayGo();
+</script>
+</html>

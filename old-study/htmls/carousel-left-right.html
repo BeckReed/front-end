@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左右轮播</title>
+    <style type="text/css">
+        html, body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, textarea, iframe, table, th, td {
+            margin: 0;
+            padding: 0;
+        }
+        #content-box{
+            position: relative;
+            width: 1200px;
+            margin: 50px auto;
+        }
+        .carousel-div{
+            width: 1050px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .carousel-ul{
+            list-style: none;
+            height: 360px;
+            width: 9999px;/*比较大的一个值 让图片保持一行*/
+            overflow: hidden;
+        }
+        .carousel-ul li{
+            height: 300px;
+            padding: 30px;
+            background-color: #0e8fea;
+            float: left;
+            margin-right: 30px;
+            width: 180px;
+        }
+        .left-arrow-div{
+            height: 67px;
+            width: 34px;
+            background: url('../image/arrow_46_left.png') no-repeat;
+            cursor: pointer;
+            position: absolute;
+            top: 40%;
+            left: 0;
+            z-index: 5;
+        }
+        .right-arrow-div{
+            height: 67px;
+            width: 34px;
+            background: url('../image/arrow_46_right.png') no-repeat;
+            cursor: pointer;
+            position: absolute;
+            top: 40%;
+            right: 0;
+            z-index: 5;
+        }
+
+    </style>
+</head>
+<body>
+<div id="content-box">
+    <div class="left-arrow-div"></div>
+    <div class="carousel-div">
+        <ul class="carousel-ul">
+            <li>a</li>
+            <li>b</li>
+            <li>c</li>
+            <li>d</li>
+            <li>e</li>
+        </ul>
+    </div>
+    <div class="right-arrow-div"></div>
+</div>
+<script type="text/javascript" src="../lib/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    $(function($) {
+        // 你可以在这里继续使用$作为别名...
+
+        var wrap_len = $("#content-box");
+        if(wrap_len.length > 0){
+            var autoPlay = true;
+            var speed = 600;
+            var cul = $(".carousel-ul");
+            var cli = cul.children("li");
+            var cli_w = cli.outerWidth(true);
+            //左右切换
+            function prevMove(){
+                cul.children("li:first").stop().animate({"margin-left":-cli_w},speed,function(){
+                    $(this).css("margin-left","0px").appendTo(cul);
+                });
+            }
+            function nextMove(){
+                cul.children("li:last").prependTo(cul);
+                cul.children("li:first").css("margin-left",-cli_w).stop().animate({"margin-left":"0px"},speed);
+            }
+            $(".left-arrow-div").click(function(){
+                prevMove();
+            });
+            $(".right-arrow-div").click(function(){
+                nextMove();
+            });
+            //是否自动切换
+            if(autoPlay){
+                var autoMove = setInterval(prevMove,3000);
+                $(".carousel-div,.left-arrow-div,.right-arrow-div").hover(function(){
+                    clearInterval(autoMove);
+                },function(){
+                    autoMove = setInterval(prevMove,3000);
+                });
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

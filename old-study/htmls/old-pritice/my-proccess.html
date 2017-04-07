@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的流程</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<!--<link rel="stylesheet" href="../css/mui.css">-->
+<link rel="stylesheet" href="../../css/dropload.css">
+<style type="text/css">
+	html{
+		font-size: 62.5%;
+	}
+	body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,
+	q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,
+	tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,menu,nav,section,summary,time,mark,audio,video
+	{
+		margin:0;
+		padding:0;
+	}
+	a{
+		text-decoration: none;
+	}
+	.tab{
+		width: 100%;
+		display: flex;
+		border-bottom: 0.1rem solid #0e8fea;
+		height: 4.4rem;
+		line-height: 4.4rem;
+	}
+	.tab a{
+		color: #777777;
+		flex: 1;
+		display: block;
+		text-align: center;
+		font-size: 1.4rem;
+		font-weight: bold;
+	}
+	.tab .active{
+		color: #0e8fea;
+		border-bottom: 0.2rem solid #0e8fea;
+	}
+	.lists{
+		list-style: none;
+	}
+	.lists li{
+		border-bottom: 0.1rem solid #ddd;
+		padding: 1.2rem;
+
+		display: -moz-box;  /* Firefox */
+		display: -ms-flexbox;    /* IE10 */
+		display: -webkit-box;    /* Safari */
+		display: -webkit-flex;    /* Chrome, WebKit */
+		display: flex;
+	}
+	.lists li .item-detail{
+		height: 8rem;
+		flex: 1;
+		margin-left: 1rem;
+		font-size: 1.6rem;
+		position: relative;
+	}
+	.u-photo{
+		height: 8rem;
+		width: 8rem;
+		border-radius: 2rem;
+	}
+	.apply-type{
+		font-weight: bold;
+		color: #393939;
+	}
+	.c-grey{
+		color: #c7c7c7;
+	}
+	.f-r{
+		float:right;
+	}
+	.clearfix{
+		clear: both;
+	}
+	.item-detail p{
+		width: 100%;
+	}
+	.item-p1{
+		margin-top: 1rem;
+	}
+	.item-p2{
+		position: absolute;
+		bottom: 1rem;
+	}
+
+</style>
+<body>
+<div class="tab">
+	<a href="#" class="item active">待审批</a>
+	<a href="#">已审批</a>
+	<a href="#">我的申请</a>
+</div>
+<div class="content">
+	<div class="lists"></div>
+	<div class="lists"></div>
+	<div class="lists"></div>
+	<!--<ul class="lists">
+		<li>
+			<img class="u-photo" src="http://oa3.tdxueyuan.com//Files/Api/Other/huangzufu/20151218112459.jpg">
+			<div class="item-detail c-grey">
+				<p class="item-p1">
+					<span class="apply-type">补卡</span>
+					<span class="f-r ">05-31 10:22</span>
+				</p>
+				<p class="item-p2 ">
+					<span>(05-31 上班)</span>
+					<span class="f-r ">处理人:罗国锋</span>
+				</p>
+			</div>
+
+		</li>
+
+		<li>
+			<img class="u-photo" src="http://oa3.tdxueyuan.com//Files/Api/Other/huangzufu/20151218112459.jpg">
+			<div class="item-detail c-grey">
+				<p class="item-p1">
+					<span class="apply-type">请假</span>
+					<span class="f-r ">05-31 10:22</span>
+				</p>
+				<p class="item-p2 ">
+					<span>05-28 09:00~05-28 18:00</span>
+					<span class="f-r ">被退回</span>
+				</p>
+			</div>
+		</li>
+
+		<li>
+			<img class="u-photo" src="http://oa3.tdxueyuan.com//Files/Api/Other/huangzufu/20151218112459.jpg">
+			<div class="item-detail c-grey">
+				<p class="item-p1">
+					<span class="apply-type">请假</span>
+					<span class="f-r ">05-31 10:22</span>
+				</p>
+				<p class="item-p2 ">
+					<span>05-28 09:00~05-28 18:00</span>
+					<span class="f-r ">已结束</span>
+				</p>
+			</div>
+		</li>
+
+	</ul>-->
+</div>
+</body>
+<!--<script src="../js/mui.js"></script>
+<script src="../js/mui.pullToRefresh.js"></script>
+<script src="../js/mui.pullToRefresh.material.js"></script>
+<script type="text/javascript">
+	mui.init();
+</script>-->
+<script src="../../js/jquery-1.11.3.min.js"></script>
+<script src="../../js/dropload.js"></script>
+<script type="text/javascript">
+	$(function($){
+		var baseUrl = 'http://28f.bujidele.com:34181/';
+		var userId="4FB1959B80C4DA56BFB9856FD0A6E997";//luoguofeng
+		var pageSize=7;
+		var itemIndex = 0;
+		var tab1LoadEnd = false;
+		var tab2LoadEnd = false;
+
+
+
+		// tab
+		$('.tab .item').on('click',function(){
+			var $this = $(this);
+			itemIndex = $this.index();
+			$this.addClass('cur').siblings('.item').removeClass('cur');
+			$('.lists').eq(itemIndex).show().siblings('.lists').hide();
+
+			// 如果选中菜单一
+			if(itemIndex == '0'){
+				// 如果数据没有加载完
+				if(!tab1LoadEnd){
+					// 解锁
+					dropload.unlock();
+					dropload.noData(false);
+				}else{
+					// 锁定
+					dropload.lock('down');
+					dropload.noData();
+				}
+				// 如果选中菜单二
+			}else if(itemIndex == '1'){
+				if(!tab2LoadEnd){
+					// 解锁
+					dropload.unlock();
+					dropload.noData(false);
+				}else{
+					// 锁定
+					dropload.lock('down');
+					dropload.noData();
+				}
+			}
+			// 重置
+			dropload.resetload();
+		});
+
+		var counter = 0;
+		// 每页展示4个
+		var num = 4;
+		var pageStart = 0,pageEnd = 0;
+
+		function PostData(id,receiveTimeTimeStamp){
+			this.PageSize=pageSize;
+			this.ID=id;
+			this.ReceiveTimeTimeStamp=receiveTimeTimeStamp;
+		}
+
+		function getStatusText(statusCode){
+			var result;
+			console.log(statusCode)
+			switch(statusCode){
+				case 1:
+					result="保存代发";
+					break;
+				case 2: case 4:
+					result="进行中";
+					break;
+				case 3:
+					result="撤销";
+					break;
+				case 5:
+					result="已完成";
+					break;
+				case 4: case 6:
+					result="被退回";
+					break;
+				default:
+					result='';
+			}
+			return result;
+		}
+
+		function getBacklogsTpl(list){
+			var htmlTpl='';
+			if(Array.isArray(list)){
+				htmlTpl="<ul>";
+				$.each(list, function (i, item) {
+					htmlTpl+=
+					'<li data-id="'+item.ID+'" data-recieve-timestamp="'+item.ReceiveTimeStamp+'">'
+						+ '<img class="u-photo" src="'+item.CreateUserImage+'">'
+						+	'<div class="item-detail c-grey">'
+						+		'<p class="item-p1">'
+						+			'<span class="apply-type">'+item.CreatorName+'</span>'
+						+			'<span class="f-r ">'+item.CreateTime+'</span>'
+						+		'</p>'
+						+		'<p class="item-p2 ">'
+						+			'<span>'+item.Title+'</span>'
+						+			'<span class="f-r ">'+getStatusText(item.LastStatus)+'</span>'
+						+		'</p>'
+						+	'</div>'
+					+'</li>';
+				});
+				htmlTpl+="</ul>";
+			}
+			return htmlTpl;
+		}
+
+		//获取待审批数据
+		function getBacklogs(postData,me,direction){
+			//direction 1 上拉 0 下拉刷新
+			$.ajax({
+				type: "POST",
+				url: baseUrl+"api/Process/Backlogs",
+				data: {Version:"1.0.1",Token:"",UserId:userId,Data:JSON.stringify(postData)},
+				success: function(result){
+					var htmlTpl=getBacklogsTpl(result.Data);
+
+					if(result.Data.length==0 || result.Data.length<pageSize){
+						// 数据加载完
+						tab1LoadEnd = true;
+						// 锁定
+						if(direction>0){
+							console.log('结果啊')
+							me.lock();
+						}
+						// 无数据
+						me.noData();
+					}
+					if(direction<=0){
+						console.log('aaaa')
+						me.unlock();
+						me.noData(false);
+						$(".dropload-up").removeAttr("style");
+						$('.lists:first').children().children().remove();
+						//me.$domDown.html('');
+					}
+					console.log(htmlTpl)
+					$('.lists').eq(0).append(htmlTpl);
+					// 每次数据加载完，必须重置
+					me.resetload();
+				}
+			});
+		}
+
+		// dropload
+		var dropload = $('.content').dropload({
+			scrollArea : window,
+			loadDownFn : function(me){
+				// 加载菜单一的数据
+				if(itemIndex == '0'){
+					var lastBacklogsItem=$('.lists:first').children('ul').children().last();
+					console.log(lastBacklogsItem)
+					var postData;
+					if(lastBacklogsItem){
+						var lastId=lastBacklogsItem.attr('data-id');
+						var lastTimeStamp=lastBacklogsItem.attr('data-recieve-timestamp');
+						postData=new PostData(lastId,lastTimeStamp);
+					}else{
+						postData=new PostData(-1,0);
+					}
+					//待审批
+					console.log('rrrrrrrrrrrr')
+					console.log(postData)
+					getBacklogs(postData,me,1);
+
+					/*$.ajax({
+						type: "POST",
+						url: baseUrl+"api/Process/Backlogs",
+						data: {Version:"1.0.1",Token:"",UserId:userId,Data:JSON.stringify(postData)},
+						success: function(result){
+							var htmlTpl=getBacklogsTpl(result.Data);
+							// 数据加载完
+							tab1LoadEnd = true;
+							// 锁定
+							me.lock();
+							// 无数据
+							me.noData();
+							$('.lists').eq(0).append(htmlTpl);
+							// 每次数据加载完，必须重置
+							me.resetload();
+						}
+					});*/
+
+
+
+
+					/*$.ajax({
+						type: 'GET',
+						url: 'json/more.json',
+						dataType: 'json',
+						success: function(data){
+							var result = '';
+							counter++;
+							pageEnd = num * counter;
+							pageStart = pageEnd - num;
+
+							if(pageStart <= data.lists.length){
+								for(var i = pageStart; i < pageEnd; i++){
+									result +=   '<a class="item opacity" href="'+data.lists[i].link+'">'
+											+'<img src="'+data.lists[i].pic+'" alt="">'
+											+'<h3>'+data.lists[i].title+'</h3>'
+											+'<span class="date">'+data.lists[i].date+'</span>'
+											+'</a>';
+									if((i + 1) >= data.lists.length){
+										// 数据加载完
+										tab1LoadEnd = true;
+										// 锁定
+										me.lock();
+										// 无数据
+										me.noData();
+										break;
+									}
+								}
+								// 为了测试，延迟1秒加载
+								setTimeout(function(){
+									$('.lists').eq(0).append(result);
+									// 每次数据加载完，必须重置
+									me.resetload();
+								},1000);
+							}
+						},
+						error: function(xhr, type){
+							alert('Ajax error!');
+							// 即使加载出错，也得重置
+							me.resetload();
+						}
+					});*/
+					// 加载菜单二的数据
+				}else if(itemIndex == '1'){
+					$.ajax({
+						type: 'GET',
+						url: 'json/update.json',
+						dataType: 'json',
+						success: function(data){
+							var result = '';
+							for(var i = 0; i < data.lists.length; i++){
+								result +=   '<a class="item opacity" href="'+data.lists[i].link+'">'
+										+'<img src="'+data.lists[i].pic+'" alt="">'
+										+'<h3>'+data.lists[i].title+'</h3>'
+										+'<span class="date">'+data.lists[i].date+'</span>'
+										+'</a>';
+							}
+							// 为了测试，延迟1秒加载
+							setTimeout(function(){
+								$('.lists').eq(1).append(result);
+								// 每次数据加载完，必须重置
+								me.resetload();
+							},1000);
+						},
+						error: function(xhr, type){
+							alert('Ajax error!');
+							// 即使加载出错，也得重置
+							me.resetload();
+						}
+					});
+				}
+			},
+			loadUpFn:function(me){
+				console.log('下拉')
+				postData=new PostData(-1,0);
+				getBacklogs(postData,me,0);
+			}
+		});
+	});
+</script>
+</html>

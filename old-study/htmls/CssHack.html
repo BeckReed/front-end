@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Css Hack实现</title>
+</head>
+<style type="text/css">
+    #test{zoom:1;overflow:hidden;border:1px solid #ddd;background:#eee;}
+    #test h1{float:left;}
+    #test .nav{float:right;background:#aaa;}
+    #test .nav ul{zoom:1;overflow:hidden;margin:0;padding:0;list-style:none;}
+    #test .nav li{float:left;margin:0 5px;}
+    html{
+        scrollbar-3dlight-color:red;
+        scrollbar-darkshadow-color:yellow;
+        scrollbar-highlight-color:blue;
+        scrollbar-shadow-color:green;
+        scrollbar-arrow-color:#0ff;
+        scrollbar-face-color:#066;
+        scrollbar-track-color:#562;
+        scrollbar-base-color:#333;
+        overflow-y:scroll;
+    }
+</style>
+<body>
+
+
+<div id="test">
+    <h1>Doyoe</h1>
+    <div class="nav">
+        <ul>
+            <li><a href="http://css.doyoe.com/">CSS参考手册</a></li>
+            <li><a href="http://blog.doyoe.com/">CSS探索之旅</a></li>
+            <li><a href="http://demo.doyoe.com/">web前端实验室</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

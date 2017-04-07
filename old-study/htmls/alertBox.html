@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义模拟模态窗口(弹出框)</title>
+    <!--<link rel="stylesheet" href="../css/base.css">-->
+    <style type="text/css">
+        html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img {margin: 0;padding: 0;}
+        /*alert box css file*/
+        .mask{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            /*background: rgba(0,0,0,.5);*/
+            background-color: #666;
+            top:0;
+            left: 0;
+            z-index: 999;
+            display: none;
+        }
+
+        .alert-box{
+            width: 400px;
+            min-height: 250px;
+            height: auto;
+            background-color: #fff;
+            top:50%;
+            left: 50%;
+            margin: -125px 0 0 -200px;
+            position: fixed;
+            z-index: 1000;
+            display: none;
+        }
+
+        .f-15{
+            font-size: 15px;
+            display: block;
+        }
+
+        .box-title-div{
+            border-bottom: 1px solid #d9d9d9;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+        }
+
+        .box-title-div .box-title{
+            position:absolute;
+            /*top:15px;*/
+            left: 15px;
+            /*font-size: 15px;*/
+        }
+
+        .box-title-div .closed-span{
+            position: absolute;
+            /*top:15px;*/
+            right: 15px;
+            width: 15px;
+            /*height: 15px;*/
+            /*font-size: 15px;*/
+            cursor: pointer;
+        }
+
+        .alert-box .warn-content{
+           /* text-align: center;*/
+            margin: 20px;
+            min-height: 90px;
+            word-wrap: break-word;
+            max-height: 380px;
+            overflow: auto;
+        }
+
+        .btn-area{
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .margin-right-80{
+            margin-right: 80px;
+        }
+
+        .btn-blue{
+            width: 100px;
+            height: 40px;
+            color: #fff;
+            background-color: #008fff;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-grey{
+            width: 100px;
+            height: 40px;
+            color: #fff;
+            background-color: #d9d9d9;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+
+        }
+
+        .content-div{
+            margin: 50px 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="content-div">
+    <input type="button" value="模态弹出确认框" id="showAlertBox"/>
+</div>
+<!--遮罩背景层-->
+<div class="mask"></div>
+<!--弹框盒子-->
+<div class="alert-box">
+    <div class="box-title-div">
+        <span class="box-title f-15">提示</span>
+        <span class="closed-span f-15">×</span>
+    </div>
+    <div class="warn-content">
+        Is that right?
+    </div>
+    <div class="btn-area">
+        <span class="btn-blue margin-right-80">确定</span>
+        <span class="btn-grey">取消</span>
+    </div>
+
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    window.onload=function(){
+
+        function addEvent(evnt, elem, func) {
+            if (elem.addEventListener) {
+                /*evnt = evnt.replace(/^on/,'');  //如果on开头，删除on，如onclick->click*/
+                elem.addEventListener(evnt,func,false);
+            } // W3C DOM
+            else if (elem.attachEvent) { // IE DOM
+                elem.attachEvent("on"+evnt, func);
+            }
+            else { // No much to do
+                elem[evnt] = func;
+            }
+        }
+
+        var alertBtn=document.getElementById('showAlertBox'),
+            closedSpan=document.querySelectorAll('.closed-span');
+        addEvent('click',alertBtn,function(){
+            var maskDiv=document.querySelectorAll('.mask'),
+                alertBox=document.querySelectorAll('.alert-box');
+            if(maskDiv && alertBox && maskDiv.length>0 && alertBox.length>0){
+                maskDiv[0].style.display='block';
+                alertBox[0].style.display='block';
+            }
+        });
+
+        if(closedSpan && closedSpan.length>0){
+            addEvent('click',closedSpan[0],function(){
+                var maskDiv=document.querySelectorAll('.mask'),
+                        alertBox=document.querySelectorAll('.alert-box');
+                if(maskDiv && alertBox && maskDiv.length>0 && alertBox.length>0){
+                    maskDiv[0].style.display='none';
+                    alertBox[0].style.display='none';
+                }
+            });
+        }
+
+
+    };
+</script>

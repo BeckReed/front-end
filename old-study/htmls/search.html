@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索框</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;-webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;}
+        .search{
+            width: 450px;
+            height: 30px;
+            margin: 300px auto;
+            position: relative;
+        }
+        #search_txt{
+            height: 40px;
+            width: 360px;
+            outline-style: none;
+            border:1px solid #FF4200;
+            font-size: 14px;
+            padding-left: 5px;
+        }
+        #tip{
+            color: #ccc;
+            position: absolute;
+            font-size: 14px;
+            top:12px;
+            left: 15px;
+        }
+        #search_btn{
+            width: 90px;
+            height: 40px;
+            float: right;
+            border: none;
+            background-color: #FF4200;
+            color: #FFFFFF;
+            cursor: pointer;
+            font: 18px "Microsoft YaHei";
+            letter-spacing:5px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload=function(){
+            function $(id){
+                return document.getElementById(id);
+            }
+            $('search_txt').focus();
+            $('search_txt').oninput=$('search_txt').onpropertychange=function(){
+                console.log('ddddd')
+                if(this.value==''){
+                    $('tip').style.display="block";
+                }else{
+                    $('tip').style.display="none";
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+<div class="search">
+    <input type="text" id="search_txt" /><label id="tip" for="search_txt">双十一家装买买买</label>
+    <button id="search_btn">搜索</button>
+</div>
+
+</body>
+</html>

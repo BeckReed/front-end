@@ -1,0 +1,26 @@
+@charset "utf-8";
+.wrap{
+    border: 1px solid red;
+    width: 960px;
+    margin: 0 auto;
+    height: 500px;
+}
+.navigate-ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.navigate-ul li{
+    float: left;
+    background-color: hotpink;
+}
+.navigate-ul li a{
+    text-decoration: none;
+    color: #FFFFFF;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    padding: 0 4px;
+    width: 72px;
+}

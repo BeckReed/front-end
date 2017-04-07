@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Requirejs Test</title>
+</head>
+<!--<script src="../js/test1.js"></script>-->
+<!--以上立马执行alert会阻塞页面Html加载线程-->
+<script data-main="../js/require-main" src="../../lib/requirejs/require.js"></script>
+<!--
+	1.requirejs脚本的script标签加入了data-main属性，这个属性指定的js将在加载完requirejs后处理，
+	  我们吧require.config的配置加入到data-main后，就可以使每一个页面都使用这个配置，然后页面中就
+	  可以直接使用require来加载所有的短模块名
+	2.data-main还有一个重要的功能，当script标签指定data-main属性时，require会默认的将data-main指定为Js
+	的根路径，是什么意思呢？如上面的data-main="../js/require-main"设定后，我们在使用require(['jquery'])后
+	(不配置jquery的paths),require会自动加载../js/lib/jquery.js这个文件，而不是jquery.js相当于默认配置了：
+	require.config({
+		baseUrl:'../js/lib'
+	})
+
+
+	require.config({
+　　　　baseUrl: "js/lib",
+　　　　paths: {
+　　　　　　"jquery": "jquery.min",
+　　　　　　"underscore": "underscore.min",
+　　　　　　"backbone": "backbone.min"
+　　　　}
+　　});
+-->
+<body>
+<span>你好测试Requirejs11...</span>
+</body>
+
+</html>

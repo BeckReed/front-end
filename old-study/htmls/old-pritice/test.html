@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Study test html</title>
+</head>
+<body>
+
+</body>
+<script src="../../js/array-study.js"></script>
+<script src="../../js/oop-study.js"></script>
+<script src="../../js/extend-study.js"></script>
+<script type="text/javascript">
+
+	var sum=function(){
+		var i,sum=0;
+		console.log(arguments);
+		for(i=0;i<arguments.length;i++){
+			sum+=arguments[i];
+		}
+		return sum;
+	};
+	//参数调用的时候默认的会得到一个arguments数组
+	//document.write(sum(4,5,7,8,9));
+
+	function add(num1,num2){
+		//arguments对象的长度是由传入的参数个数决定
+		/* arguments并不是一个真正的数组，它只是一个类数组的对象，
+		它拥有一个length属性，但他缺少所有数组的方法*/
+		console.log(arguments);//形参只有两个 但是arguments是由实参即传入的真正个数决定
+		var result=num1+num2;
+		return result;
+	}
+
+	//document.write(add(1,2,3));
+
+	function getByte(str){
+		var len=str.length;
+		var bytes=len;
+		for(var i=0;i<len;i++){
+			if(str.charCodeAt(i)>255){
+				bytes++;
+			}
+		}
+		return bytes;
+	}
+	console.log(getByte("你好吖,yy"));
+
+	//编写可以维护的javascript  书的部分提取
+
+	//校验引用对象是否数组兼容性写法
+	function isArray(value){
+		if(typeof Array.isArray==="function"){
+			return Array.isArray(value);
+		}else{
+			//兼容旧版本浏览器
+			return Object.prototype.toString.call(value)==="[object Array]";
+		}
+	}
+
+	var t="",
+		t2=["aa","bb"];
+	console.log('This is test array is right?');
+	console.log(isArray(t));
+	console.log(isArray(t2));
+
+	//校验属性是否在对象中存在
+	function checkPropertyIn(propertyName,obj) {
+		var result="hasOwnProperty" in obj && obj.hasOwnProperty(propertyName);
+		return result;
+		/*
+			或者使用 In
+			if ("count" in obj){
+				//do your things
+			}
+		*/
+	}
+
+	var testObj={count:0,releated:null};
+	var t3=checkPropertyIn("1count",testObj);
+	console.log("Test property in obj...");
+	console.log(t3);
+
+
+	//js练习题
+
+	//1.js对象的深度克隆
+	function clone(Obj){
+		var buf;
+		if(Obj instanceof Array){
+			buf=[];//创建一个空的数组
+			var i=Obj.length;
+			while(i--){
+				buf[i]=clone(Obj[i]);
+			}
+			return buf;
+		}else if(Obj instanceof Object){
+			buf={};//创建一个空的对象
+			for(var k in Obj){
+				buf[k]=clone(Obj[k]);
+			}
+			return buf;
+		}else{
+			return Obj;
+		}
+	}
+
+	var t={name:"ttt",id:12};
+	var cloneTest=clone(t);
+	console.log(cloneTest);
+	cloneTest.id=111;
+	console.log(cloneTest);
+	console.log(t);
+
+	//js数组去重
+	function uniqueArray1(arr){
+		var n=[];//新建一个临时数组
+		for(var i=0;i<arr.length;i++){//变量数组
+			if(n.indexOf(arr[i])==-1){
+				n.push(arr[i]);
+			}
+		}
+		return n;
+	}
+
+	function uniqueArray2(arr){
+		var n={},
+			r=[];//n为hash表,r为临时数组
+		for(var i=0;i<arr.length;i++){//遍历当前数组
+			if(!n[arr[i]]){//如果hash表中没有当前项
+				n[arr[i]]=true;//存入hash表
+				r.push(arr[i]);//把当前数组的当前项push到临时数组里面
+			}
+		}
+		return r;
+	}
+
+	function uniqueArray3(arr){
+		var n=[arr[0]];//结果数组
+		for(var i=1;i<arr.length;i++){
+			/*
+				如果当前的数组第i项在当前数组中第一次出现的位置不是i,
+				那么表示第i项是重复，请忽略掉。否则存入结果数组
+			 */
+			if(arr.indexOf(arr[i])==i){
+				n.push(arr[i]);
+			}
+		}
+		return n;
+	}
+
+	var test1=[1,2,2,3,3,3,4,4,5];
+	var testUniqueArray1=uniqueArray1(test1);
+	var testUniqueArray2=uniqueArray2(test1);
+	var testUniqueArray3=uniqueArray3(test1);
+	console.log(testUniqueArray1);
+	console.log(testUniqueArray2);
+	console.log(testUniqueArray3);
+
+
+
+
+
+</script>
+</html>
