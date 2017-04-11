@@ -6,6 +6,7 @@ var require={
     baseUrl:'../js',
     paths : {
         "jquery" : ["http://libs.baidu.com/jquery/2.0.3/jquery-test-NoExist","lib/jquery/jquery-1.12.4"],
+        "zepto": 'lib/zepto/zepto',
         //"a" : "/WebStudy/js/a"
     },
     //非AMD模块加载配置
@@ -15,6 +16,9 @@ var require={
         },
         "jquery.form":{
             deps:["jquery"]
+        },
+        'zepto': {
+            exports: '$'
         }
         /*
          可以简写：
