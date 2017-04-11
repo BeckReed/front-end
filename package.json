@@ -1,0 +1,25 @@
+{
+  "name": "front-end",
+  "version": "1.0.0",
+  "description": "project for studying front-end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeckReed/front-end.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Beck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BeckReed/front-end/issues"
+  },
+  "homepage": "https://github.com/BeckReed/front-end#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}

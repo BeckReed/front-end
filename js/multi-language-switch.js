@@ -12,11 +12,11 @@
 });*/
 
 
-;define(['base',window.customerSetting.langPackage],function(base,aaa){
-    console.log(aaa)
+;require(['zepto','language','domReady'], function ($,language,domReady){
+    domReady(function () {
+        console.log(language);
+        $('#languages').prev().text(language.red);
+    });
 
-
-    $('html').text('你好，使用了zepto更改了内容');
-
-    //console.log(langPackages);
+    // some code here
 });

@@ -7,7 +7,7 @@
 })();
 
 ;define(['zepto','cookieHelper','Config/baseConfig'],function($,cookieHelper,baseConfig){
-    var lang=cookieHelper.getCookie('lang');
+    /*var lang=cookieHelper.getCookie('lang');
     console.log(baseConfig)
     if(!lang){
         lang=baseConfig.defaultLang;
@@ -16,5 +16,5 @@
     var customerSetting={};
     window.customerSetting.lang=lang;
     window.customerSetting.langPackage=messageLang;
-    console.log(window.customerSetting)
+    console.log(window.customerSetting)*/
 });

@@ -7,6 +7,9 @@ var require={
     paths : {
         "jquery" : ["http://libs.baidu.com/jquery/2.0.3/jquery-test-NoExist","lib/jquery/jquery-1.12.4"],
         "zepto": 'lib/zepto/zepto',
+        'i18n':'lib/requirejs/i18n',
+        'language':'app-module/language',
+        'domReady':'lib/requirejs/domReady'
         //"a" : "/WebStudy/js/a"
     },
     //非AMD模块加载配置
@@ -24,7 +27,16 @@ var require={
          可以简写：
          "jquery.form":["jquery"]
          * */
-    }
+    },
+    config: {
+        //Set the config for the i18n
+        //module ID
+        i18n: {
+            locale: 'fr-fr'
+        }
+    },
+
+
 };
 /*var require=require.config({
     baseUrl:'../js',
