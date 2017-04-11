@@ -16,9 +16,10 @@
             + maximum-scale : 最大缩放
     -->
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    <title>Index default template</title>
+    <title>Multi Language Swith</title>
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/comm.css" />
+    <link rel="stylesheet" href="../css/multi-language-switch.css" />
     <link rel="shortcut icon" href="../favicon.ico" />
     <!--[if lt IE 9]>
         <!--html5shiv让低版本浏览器可以识别HTML5的新标签，如header、footer、section等-->
@@ -29,13 +30,16 @@
     <!--建议以后在html中将脚本的引入放到页面的最底下,但是以上脚本影响到DOM元素渲染必须放在上面合适-->
 </head>
 <body>
-<div>
+<div id="languages">
     <ul>
-        <li>en</li>
-        <li>ru</li>
+        <li><a href="#">en</a></li>
+        <li><a href="#">ru</a></li>
     </ul>
 </div>
 
-<script src="../js/lib/jquery/jquery-1.12.4.js"></script>
+<!--加载公共的requrejs.config-->
+<script src="../js/lib/requirejs/require.config.js"></script>
+<script data-main="multi-language-switch" src="../js/lib/requirejs/require.js"></script>
+<script src=""></script>
 </body>
 </html>
