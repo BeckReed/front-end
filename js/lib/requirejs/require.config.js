@@ -5,7 +5,8 @@
 var require={
     baseUrl:'../js',
     paths : {
-        "jquery" : ["http://libs.baidu.com/jquery/2.0.3/jquery-test-NoExist","lib/jquery/jquery-1.12.4"],
+        /*"jquery" : ["http://libs.baidu.com/jquery/2.0.3/jquery-test-NoExist","lib/jquery/jquery-1.12.4"],*/
+        "jquery" : "lib/jquery/jquery-1.12.4",
         "zepto": 'lib/zepto/zepto',
         'language':'app-module/language',
         'domReady':'lib/requirejs/domReady'
@@ -19,9 +20,9 @@ var require={
         "jquery.form":{
             deps:["jquery"]
         },
-        'zepto': {
+        /*'zepto': {
             exports: '$'
-        }
+        }*/
         /*
          可以简写：
          "jquery.form":["jquery"]

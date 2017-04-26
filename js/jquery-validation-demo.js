@@ -4,6 +4,7 @@
 
 
 ;define(['jquery','base'],function(){
+    console.log($)
     console.log('bbbb');
 
 });
