@@ -51,6 +51,27 @@
             $('body,html').animate({ scrollTop: 0 }, 1000);
             return false;
         });
+
+
+        $('#book').animate({
+            opacity: 0.25,
+            left: '50',
+            height: 'toggle'
+        }, {
+            duration :1000,
+            specialEasing: {
+                height: 'linear'
+            },
+            step: function(now, fx) {
+                console.log('step')
+            },
+            progress:function(){
+                console.log('progress')
+            },
+            complete:function(){
+                console.log('动画完成')
+            }
+        })
     });
 
     // some code here
