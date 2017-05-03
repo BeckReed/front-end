@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study base transition</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+        h4{
+            margin-top:50px;
+        }
+        .trans-ul{
+            list-style: none;
+        }
+        .trans-ul li{
+            float: left;
+            margin: 20px 30px 0 20px;
+            border: 1px solid #000000;
+        }
+        .trans-ul li p{
+            width: 300px;
+            height: 100px;
+            margin: 0;
+            background: #ddd;
+        }
+        .rotate-min-15:hover{
+            transform: rotate(-15deg);
+        }
+        .scale-dot-5{
+            transform: scale(.5);
+        }
+        .scale-2{
+            transform: scale(2);
+        }
+
+        .skew-5 p:hover{
+            background-color: #0e8fea;
+            transition: all .6s ease .5s;
+            transform: skew(-5deg);
+
+        }
+        .skew-double{
+            transform: skew(5deg);
+        }
+    </style>
+</head>
+<body>
+<h4>旋转rotate</h4>
+<ul class="trans-ul clearfix">
+    <li class="rotate-min-15">
+        <p>transform:rotate(-15deg) Hover to show</p>
+    </li>
+    <li>
+        <p>aaaaa</p>
+    </li>
+</ul>
+<h4>缩放scale</h4>
+<ul class="trans-ul clearfix">
+    <li class="scale-dot-5">
+        <p>transform:scale(.5)</p>
+    </li>
+    <li class="scale-2">
+        <p>transform:scale(2)</p>
+    </li>
+</ul>
+<h4>扭曲skew</h4>
+<ul class="trans-ul clearfix">
+    <li class="skew-5">
+        <p>transform:scale(.5)</p>
+    </li>
+    <li class="skew-double">
+        <p>transform:scale(2)</p>
+    </li>
+</ul>
+</body>
+</html>
