@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6 study</title>
+</head>
+<body>
+
+</body>
+<script>
+    var a1=[];
+    for (var i=0;i<10;i++){
+        a1[i]=function () {
+            console.log(i);
+        };
+    }
+    console.log(i);//var声明的，在全局范围内都有效  通过闭包读取到的 i 是最后修改的10
+    a1[6]();
+
+    var a2=[];
+    for(let j=0;j<10;j++){
+        a2[j]=function () {
+            console.log(j);
+        };
+    }
+    a2[6]();
+
+    for(let k=0;k<3;k++){
+        let k='abc';
+        console.log(k);
+        //输出了3次abc，这表明函数内部的变量k和外部的变量k是分离的
+    }
+
+</script>
+</html>
