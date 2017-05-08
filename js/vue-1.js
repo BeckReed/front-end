@@ -52,6 +52,33 @@ var parentComponent=Vue.extend({
 });
 Vue.component("parent-component",parentComponent);
 
+var Parent = Vue.component('parent',{
+    template: '#parent-template',
+    data:function () {
+        return {parentMsg:'111'}
+    },
+    methods:{
+        //接收子组件传过来的数据
+        getChildMsg:function (msg) {
+            alert(msg);
+            this.parentMsg=msg;
+        }
+    }
+});
+
+var Child = Vue.component('child',{
+    template:'#child-template',
+    data:function () {
+        return {childMsg:'99999'}
+    },
+    methods:{
+        //把子组件的数据发给父组件
+        sendParentMsg:function () {
+            this.$emit('get-message',this.childMsg);
+        },
+    }
+})
+
 //创建根实例
 var vm=new Vue({
     el: '#app',
@@ -82,8 +109,12 @@ var vm=new Vue({
 
         ],
         currentView:"home",
+        total:0,
+        /*parentMsg: '',
+        childMsg: ''*/
     },
     components: {
+        //这里面的组件是局部注册的
         home: {
             template: '<h1>你好，这是显示首页组件的内容</h1>'
         },
@@ -92,6 +123,26 @@ var vm=new Vue({
         },
         archive: {
             template: '<h3>这是存档页</h3>'
+        },
+        'button-counter':{
+            props:[],//父组件并没有往子组件传出数据,所以不需要
+            template:'<button @click="increment">{{counter}}</button>',
+            data:function () {
+                return {counter:0}
+            },
+            methods:{
+                increment:function () {
+                    this.counter+=1;
+                    this.$emit('increment');//触发绑定的 incrementTotal 事件
+                }
+            }
+        },
+        'parent':Parent,
+        'fruit-parent':{
+            template: '#fruit'
+        },
+        'fruit-parent2':{
+            template: '#fruit-second'
         }
 
     },
@@ -111,6 +162,9 @@ var vm=new Vue({
         },
         clickArchive: function () {
             this.currentView='archive';
+        },
+        incrementTotal: function () {
+            this.total+=1;
         }
     }
 })
