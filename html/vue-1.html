@@ -39,6 +39,24 @@
         </tbody>
     </table>
 
+    <!--简单组件-->
+    <my-component></my-component>
+
+    <!--嵌套组件(父子关系)-->
+    <parent-component></parent-component>
+
+    <div id="dymamicBox" style="margin: 20px 0">
+        <button id="home" @click="clickHome">首页</button>
+        <button id="posts" @click="clickPosts">发起页</button>
+        <button id="archive" @click="clickArchive">存档页</button>
+        <br>
+        <component :is="currentView"></component>
+    </div>
+
+
+
+
+
     <div>
         <button v-on:click="sayHello">Say Hello</button>
         <button @click="sayGoodBye">Say GoodBye</button>
