@@ -1,6 +1,10 @@
 
 html {
-    font-size: 62.5%;/*浏览器默认字体为16px;这里统一转换使用rem换算关系：  1rem=10px */
+    font-size: 625%;/*浏览器默认字体为16px;这里统一转换使用rem换算关系：  1rem=100px */
+}
+
+body{
+    font-size: .16rem;
 }
 
 * {
