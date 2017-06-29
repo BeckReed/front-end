@@ -1,0 +1,30 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+.viewport{
+    width: 500%;
+    height: 100%;
+    display: -webkit-box;
+    overflow: hidden;
+    /* point-event:none; 去掉这句话 是元素的target点击事件失效 */
+    transform:translate3d(0,0,0);
+    -webkit-transform:translate3d(0,0,0);    
+    backface-visibility: hidden;
+    position: relative;
+}
+
+.pageview{
+    -webkit-box-flex: 1;     
+}
+
+
+
+
+
+
+
+
+
+
