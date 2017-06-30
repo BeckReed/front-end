@@ -48,6 +48,9 @@ body {
     margin-left: -0.2em;
 }
 
+.master-test{
+    color: yellow;
+}
 .test{
     color:red;
 }
