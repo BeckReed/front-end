@@ -15,3 +15,24 @@ s,i,em{font-style: normal;text-decoration: none;}
 .fr{float: right;}
 .clearfix:after{display:block;clear:both;visibility:hidden;height:0;content:'';}
 .clearfix{zoom:1;}/*IE/7/6*/
+
+
+/*CSS重置用于取消浏览器的内置样式 初始化样式*/
+/*html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}*/
