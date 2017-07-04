@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">        
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            /* 把父元素编程一个弹性容器*/
+            .flex-test1{
+                display: flex; /*或者 inline-flex*/ 
+                list-style: none; 
+                background-color: #e8e8e9;
+                flex-direction: row;    /* 四个值可选： row || column || row-reverse || column-reverse; */               
+                flex-wrap: nowrap; /*默认为nowrap */
+                justify-content: space-around;
+                /* 方向为 "row" 并且项目换行，flex-flow为 flex-direction 和 flex-wrap 简写属性 */
+
+                /* flex-flow: row wrap; */ 
+            }
+            .flex-test1 li{
+                width: 100px;
+                height: 100px;
+                background-color: #8cacea;
+                margin: 8px;
+                padding: 4px;                
+            }
+            .flex-test1 li:nth-child(1){
+                order: 1;
+            }
+            .flex-test1 li:nth-child(3){
+                /*
+                    项目依然是从最低到最高 order 值排列。同级以后出现的HTML DOM
+                    顺序为准，即先出现先显示
+
+                */
+                order: 1; 
+            }
+
+            .flex-test2{
+                display: flex;            
+                list-style: none;
+                background-color: #e8e8e9;
+            }
+            .flex-test2 li{
+                background-color: #8cacea;
+                /*flex-grow: 1;*/
+                padding: 4px;
+                /* 
+                    弹性项目的初始宽度是被默认值 flex-basis:auto所影响
+                    弹性项目的宽度是根据内容的大小(很小冉，如果设置了padding 就要加上它)
+                    如果想把弹性项目设置为固定宽度，可以像如下这么做 强制Wie50%的宽度
+                 */
+                flex-basis: 50%;
+                /* flex:default 是所有弹性项目的默认行为 */
+                /* flex: 0 1 auto; */
+                /*
+                    如果只设置了flex-grow和flex-shrink值，flex-basis会默认设置为零。这种称为
+                    绝对弹性。
+                    如果只设置了flex-basis，就得到一个相对弹性。
+                    绝对弹性项目的宽度只基于flex属性，而相对弹性项目的宽度基于内容大小。
+                    当在一个弹性项目上使用自动外边距时，justify-content属性就不起作用了。
+                    
+
+                    flex: 0 0 auto;  与flex:none;等价
+                    flex: 1 1 auto;  与flex:auto等价
+                    flex: 2 1 0;    与flex:2等价
+                */
+            }
+        </style>
+    </head>
+    <body>
+        <ul class="flex-test1">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <!--<li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+              <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>  <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>-->
+        </ul>
+
+        <ul class="flex-test2">
+            <li>I am a simple listI am a simple listI am a simple listI am a simple listI am a simple list</li>
+        </ul>
+    </body>
+</html>
