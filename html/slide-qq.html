@@ -61,4 +61,19 @@
     </div>
 </body>
 
+<script>
+
+    //组合算法
+    function recursion_combine(arr, num) {
+        var r = [];
+        (function f(t, a, n) {
+            if (n == 0) return r.push(t);
+            for (var i = 0, l = a.length; i <= l - n; i++) {
+                f(t.concat(a[i]), a.slice(i + 1), n - 1);
+            }
+        })([], arr, num);
+        return r;
+    }
+</script>
+
 </html>
