@@ -44,7 +44,8 @@
             width: .7rem;
             height: .7rem;
         }
-        .containter{
+
+        .containter {
             margin: .2rem;
         }
     </style>
@@ -62,7 +63,6 @@
 </body>
 
 <script>
-
     //组合算法
     function recursion_combine(arr, num) {
         var r = [];
@@ -74,6 +74,31 @@
         })([], arr, num);
         return r;
     }
+
+    function getCombileCount(m, n) {
+        var maxArray = [],
+            littleArray = [];
+        for (var i = 0; i < n; i++) {
+            maxArray.push(m - i);
+            littleArray.push(n - i);
+        }
+        console.log(maxArray);
+        console.log(littleArray);
+
+        var maxResult = 1,
+            littleResult = 1;
+        for (var i = 0; i < n; i++) {
+            maxResult = maxResult * maxArray[i];
+            littleResult = littleResult * littleArray[i];
+        }
+
+        var endResult = maxResult / littleResult;
+        console.log(endResult);
+    }
+
+    
+getCombileCount(10,5);
+   
 </script>
 
 </html>
